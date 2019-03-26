@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Public</title>
+  <base href="https://pjung101.github.io/uiuxdemo/">  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style id="clock-animations"></style>
+  <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <app-root onload="startTime()"></app-root>
+  <script>
+    (function () {
+
+      //generate clock animations
+      var now = new Date(),
+        hourDeg = now.getHours() / 12 * 360 + now.getMinutes() / 60 * 30,
+        minuteDeg = now.getMinutes() / 60 * 360 + now.getSeconds() / 60 * 6,
+        secondDeg = now.getSeconds() / 60 * 360,
+        stylesDeg = [
+          "@-webkit-keyframes rotate-hour{from{transform:rotate(" + hourDeg + "deg);}to{transform:rotate(" + (hourDeg + 360) + "deg);}}",
+          "@-webkit-keyframes rotate-minute{from{transform:rotate(" + minuteDeg + "deg);}to{transform:rotate(" + (minuteDeg + 360) + "deg);}}",
+          "@-webkit-keyframes rotate-second{from{transform:rotate(" + secondDeg + "deg);}to{transform:rotate(" + (secondDeg + 360) + "deg);}}",
+          "@-moz-keyframes rotate-hour{from{transform:rotate(" + hourDeg + "deg);}to{transform:rotate(" + (hourDeg + 360) + "deg);}}",
+          "@-moz-keyframes rotate-minute{from{transform:rotate(" + minuteDeg + "deg);}to{transform:rotate(" + (minuteDeg + 360) + "deg);}}",
+          "@-moz-keyframes rotate-second{from{transform:rotate(" + secondDeg + "deg);}to{transform:rotate(" + (secondDeg + 360) + "deg);}}"
+        ].join("");
+
+      document.getElementById("clock-animations").innerHTML = stylesDeg;
+
+    })();
+  </script>
+  <script>
+    setInterval(function () {
+      // Create a newDate() object and extract the seconds of the current time on the visitor's
+      var seconds = new Date().getSeconds();
+      // Add a leading zero to seconds value
+      $("#sec").html((seconds < 10 ? "0" : "") + seconds);
+    }, 1000);
+
+    setInterval(function () {
+      // Create a newDate() object and extract the minutes of the current time on the visitor's
+      var minutes = new Date().getMinutes();
+      // Add a leading zero to the minutes value
+      $("#min").html((minutes < 10 ? "0" : "") + minutes);
+    }, 1000);
+
+    setInterval(function () {
+      // Create a newDate() object and extract the hours of the current time on the visitor's
+      var hours = new Date().getHours();
+      // Add a leading zero to the hours value
+      $("#hours").html((hours < 10 ? "0" : "") + hours);
+    }, 1000);
+</script>
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="scripts.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
+
+</html>
